@@ -48,7 +48,7 @@ $ npm i react react-dom
                 "opera": "98",
                 "safari": "17"
             }
-        }]  
+        }]
 
     2) JSX: Preset React
 
