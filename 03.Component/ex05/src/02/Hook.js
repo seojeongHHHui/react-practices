@@ -5,14 +5,14 @@ export default function Hook({ color }) {
     const [text, setText] = useState('');
 
     /**
-     *  Alternative 01: getDerivedStateFromProps
+     * 1.  Alternative01: getDerivedStateFromProps
      */
     if(color !== backgroundColor) {
         setBackgourndColor(color);
     }
 
     /**
-     *  After Rendering
+     *  2. After Rendering
      *  class component(componentDidUpdate, componentDidMount)
      * 
      */
@@ -21,13 +21,23 @@ export default function Hook({ color }) {
     });
 
     /**
-     * After Rendering
+     * 3. After Rendering
      * 어떤 특정 상태의 변화에 반응하는 함수
      * 
      */
     useEffect(() => {
         console.log('After Rendering: update text');
     }, [text]);
+
+    /**
+     * 4. Alternative02: componentDidMount & componentWillUnmount
+     */
+    useEffect(() => {
+        console.log("After Mount(componentDidMount)");
+        return () => {
+            console.log("After Unmount(componentWillUnmount)");
+        };
+    }, []);
 
     return (
         <>
