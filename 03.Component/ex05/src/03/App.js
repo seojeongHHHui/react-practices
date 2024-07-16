@@ -14,7 +14,7 @@ export default class App extends Component {
             hours: now.getHours(),
             minutes: now.getMinutes(),
             seconds: now.getSeconds(),
-            tick: this.state ? this.state.tick + 1 : 0
+            ticks: this.state ? this.state.ticks + 1 : 0
         };
     }
 
@@ -30,10 +30,10 @@ export default class App extends Component {
 
     render() {
         return ( 
-            this.state.tick % 10 === 0 ?
+            this.state.ticks % 10 === 0 ?
                 null:
                 <Clock
-                    title={`ex05: Clock Component I: ${this.state.tick}`}
+                    title={`ex05: Clock Component I: ${this.state.ticks}`}
                     hours={this.state.hours}
                     minutes={this.state.minutes}
                     seconds={this.state.seconds} />
