@@ -82,7 +82,7 @@ export default function App() {
             </Modal>
 
 
-            {/* example modal04: Using inline styles */}
+            {/* example modal04: Using CSS/SASS styles */}
             <button onClick={ () => setModal05IsOpen(true) }>modal05</button>
             <br/><br/>
 
