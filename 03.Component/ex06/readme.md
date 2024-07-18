@@ -59,8 +59,8 @@ const newObject = update(objectInState, { [WHERE] : { [WHAT]: updateValue } });
    - $push      * : 배열 요소 추가
    - $splice
    - $unsift
-   - $set       * : 객체의 속성 변경 또는 배열의 요소 변경
    - $merge
+   - $set       * : 객체의 속성 변경 또는 배열의 요소 변경
    - $apply
 
 6. src/04 참고
