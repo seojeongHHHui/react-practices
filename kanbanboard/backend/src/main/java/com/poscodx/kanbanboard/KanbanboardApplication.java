@@ -13,21 +13,21 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class KanbanboardApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(KanbanboardApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(KanbanboardApplication.class, args);
+    }
 
-	@Bean
-	public ApplicationRunner scriptRunner() {
-		return new ApplicationRunner() {
-			@Autowired
-			private SqlSessionFactory sqlSessionFactory;
+    @Bean
+    public ApplicationRunner scriptRunner() {
+        return new ApplicationRunner() {
+            @Autowired
+            private SqlSessionFactory sqlSessionFactory;
 
-			@Override
-			public void run(ApplicationArguments args) throws Exception {
-				ScriptRunner scriptRunner = new ScriptRunner(sqlSessionFactory.getConfiguration().getEnvironment().getDataSource().getConnection());
-				scriptRunner.runScript(Resources.getResourceAsReader("sql/db-setup.sql"));
-			}
-		};
-	}
+            @Override
+            public void run(ApplicationArguments args) throws Exception {
+                ScriptRunner scriptRunner = new ScriptRunner(sqlSessionFactory.getConfiguration().getEnvironment().getDataSource().getConnection());
+                scriptRunner.runScript(Resources.getResourceAsReader("sql/db-setup.sql"));
+            }
+        };
+    }
 }

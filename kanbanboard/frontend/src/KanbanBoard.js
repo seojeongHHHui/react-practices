@@ -1,18 +1,57 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Kanban_Board} from './assets/scss/KanbanBoard.scss';
 import CardList from './CardList';
-import cards from './assets/json/data';
 
 function KanbanBoard() {
-    const ToDo = cards.filter((card) => card.status === 'ToDo');
-    const Doing = cards.filter((card) => card.status === 'Doing');
-    const Done = cards.filter((card) => card.status === 'Done');
 
+    const [cards, setCards] = useState([]);
+    
+    const fetchCards = async () => {
+        console.log('fetchCards called');
+
+        try {
+            const response = await fetch('/api/card', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: null
+            });
+            
+            if(!response.ok) {
+                throw new Error(`${response.status} ${response.statusText}`);
+            }
+
+            const json = await response.json();
+
+            if(json.result !== 'success') {
+                throw new Error(json.message);
+            }
+            
+            console.log('Fetched');
+            console.log('Fetched data:', json.data);
+            setCards(json.data || []);
+            
+        } catch(err) {
+            console.error(err);
+        }
+    };
+    
+    useEffect(() => {
+        console.log('useEffect called'); // Add this line
+        fetchCards();
+    },[]);
+    
+    const toDo = cards.filter((card) => card.status === 'ToDo');
+    const doing = cards.filter((card) => card.status === 'Doing');
+    const done = cards.filter((card) => card.status === 'Done');
+ 
     return (
         <div className={Kanban_Board}>
-            <CardList key={'To Do'} title={'To Do'} cards={ToDo} />
-            <CardList key={'Doing'} title={'Doing'} cards={Doing} />
-            <CardList key={'Done'} title={'Done'} cards={Done} />
+            <CardList title={'To Do'} cards={toDo} />
+            <CardList title={'Doing'} cards={doing} />
+            <CardList title={'Done'} cards={done} />
         </div>
     );
 }
