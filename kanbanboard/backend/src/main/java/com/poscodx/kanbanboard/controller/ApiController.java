@@ -56,12 +56,12 @@ public class ApiController {
 	//public ResponseEntity<JsonResult> updateTask(@PathVariable("no") Long no, String done) {
 	public ResponseEntity<JsonResult> updateTask(@PathVariable("no") Long no, @RequestBody Map<String, String> body) {
 		String done = body.get("done");
-		System.out.println(done); // null
+		String name = body.get("name");
 		taskRepository.updateDone(no, done);
 		
 		return ResponseEntity
 				.status(HttpStatus.OK)
-				.body(JsonResult.success(Map.of("no", no, "done", done)));
+				.body(JsonResult.success(Map.of("no", no, "done", done, "name", name)));
 	}
 	
 	@DeleteMapping("/task/{no}")

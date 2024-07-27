@@ -120,7 +120,7 @@ function Card({no, title, description}) {
     
     useEffect(() => {
         fetchTasks();
-    }, [setTasks]);
+    }, []);
 
 
     return (

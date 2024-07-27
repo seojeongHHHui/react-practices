@@ -25,9 +25,9 @@ function TaskList({cardNo, tasks, updateTask, addTask, deleteTask}) {
                 ref={newTaskName}
                 onKeyPress={(e) => {
                     if (e.key === "Enter") {
+                        {console.log(cardNo)}
                         addTask({name: e.target.value, card_no: cardNo});
                         newTaskName.current.value = null;
-                        //newTaskName.current.reset();
                     }
                 }}
             />

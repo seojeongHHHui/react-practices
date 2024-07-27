@@ -7,8 +7,6 @@ function KanbanBoard() {
     const [cards, setCards] = useState([]);
     
     const fetchCards = async () => {
-        console.log('fetchCards called');
-
         try {
             const response = await fetch('/api/card', {
                 method: 'GET',
@@ -29,8 +27,6 @@ function KanbanBoard() {
                 throw new Error(json.message);
             }
             
-            console.log('Fetched');
-            console.log('Fetched data:', json.data);
             setCards(json.data || []);
             
         } catch(err) {
@@ -39,7 +35,6 @@ function KanbanBoard() {
     };
     
     useEffect(() => {
-        console.log('useEffect called'); // Add this line
         fetchCards();
     },[]);
     
